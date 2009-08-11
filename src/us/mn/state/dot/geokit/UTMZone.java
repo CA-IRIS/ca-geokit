@@ -1,0 +1,66 @@
+/*
+ * IRIS -- Intelligent Roadway Information System
+ * Copyright (C) 2009  Minnesota Department of Transportation
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+package us.mn.state.dot.geokit;
+
+/**
+ * For UTM, there are 60 zones in each hemisphere, numbered from 1-60.  An "N"
+ * or "S" is used to determine the hemisphere.  Each zone is 6 degrees wide.
+ *
+ * @author Douglas Lau
+ */
+public class UTMZone {
+
+	/** Zone number */
+	protected final int number;
+
+	/** Get the zone number */
+	public int getNumber() {
+		return number;
+	}
+
+	/** Northern hemisphere */
+	protected final boolean hemisphere;
+
+	/** Is the zone in the Northern hemisphere? */
+	public boolean isNorthernHemisphere() {
+		return hemisphere;
+	}
+
+	/** Create a UTM zone */
+	public UTMZone(int n, boolean h) {
+		if(n < 1 || n > 60) {
+			throw new IllegalArgumentException(
+				"Invalid zone number:" + n);
+		}
+		number = n;
+		hemisphere = h;
+	}
+
+	/** Get a string representation of the zone */
+	public String toString() {
+		StringBuilder b = new StringBuilder();
+		b.append(number);
+		if(hemisphere)
+			b.append('N');
+		else
+			b.append('S');
+		return b.toString();
+	}
+
+	/** Get the zone meridian (degrees longitude) */
+	public int meridian() {
+		return 6 * number - 183;
+	}
+}
