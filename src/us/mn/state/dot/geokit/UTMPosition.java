@@ -30,24 +30,8 @@ public class UTMPosition {
 	/** Scale at meridian */
 	static protected final double K0 = 0.9996;
 
-	/** UTM zone */
-	protected final UTMZone zone;
-
-	/** Easting (meters) */
-	protected final double easting;
-
-	/** Northing (meters) */
-	protected final double northing;
-
-	/** Create a new UTM position */
-	public UTMPosition(UTMZone z, double e, double n) {
-		zone = z;
-		easting = e;
-		northing = n;
-	}
-
 	/** Convert a (lat/lon) position to UTM */
-	public UTMPosition convert(GeodeticDatum gd, Position pos) {
+	static public UTMPosition convert(GeodeticDatum gd, Position pos) {
 		double a = gd.getEquatorialRadius();
 		double e2 = gd.getEccentricitySquared();
 		double ep2 = e2 / (1 - e2);
@@ -82,6 +66,22 @@ public class UTMPosition {
 		if(pos.getLatitude() < 0)
 			northing += FALSE_NORTHING;
 		return new UTMPosition(zone, easting, northing);
+	}
+
+	/** UTM zone */
+	protected final UTMZone zone;
+
+	/** Easting (meters) */
+	protected final double easting;
+
+	/** Northing (meters) */
+	protected final double northing;
+
+	/** Create a new UTM position */
+	public UTMPosition(UTMZone z, double e, double n) {
+		zone = z;
+		easting = e;
+		northing = n;
 	}
 
 /*
