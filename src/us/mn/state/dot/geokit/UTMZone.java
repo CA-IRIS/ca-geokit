@@ -22,6 +22,11 @@ package us.mn.state.dot.geokit;
  */
 public class UTMZone {
 
+	/** Get the zone number from longitude degrees */
+	static protected int lon_zone(double lon) {
+		return 1 + (int)Math.floor(lon + 180 / 6);
+	}
+
 	/** Zone number */
 	protected final int number;
 
@@ -46,6 +51,11 @@ public class UTMZone {
 		}
 		number = n;
 		hemisphere = h;
+	}
+
+	/** Create a UTM zone for a position */
+	public UTMZone(Position pos) {
+		this(lon_zone(pos.getLongitude()), pos.getLatitude() >= 0);
 	}
 
 	/** Get a string representation of the zone */
