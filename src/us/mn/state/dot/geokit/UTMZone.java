@@ -59,6 +59,21 @@ public class UTMZone {
 		return b.toString();
 	}
 
+	/** Test for object equality */
+	public boolean equals(Object o) {
+		if(o instanceof UTMZone) {
+			UTMZone oz = (UTMZone)o;
+			return number == oz.number &&
+			       hemisphere == oz.hemisphere;
+		}
+		return false;
+	}
+
+	/** Get the hash code */
+	public int hashCode() {
+		return toString().hashCode();
+	}
+
 	/** Get the zone meridian (degrees longitude) */
 	public int meridian() {
 		return 6 * number - 183;
