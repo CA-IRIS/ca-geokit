@@ -38,7 +38,7 @@ public class GeodeticDatum {
 		return polar_radius;
 	}
 
-	/** Eccentricity */
+	/** Elliptic eccentricity */
 	protected final double eccentricity;
 
 	/** Get the eccentricity */
@@ -51,6 +51,55 @@ public class GeodeticDatum {
 		equatorial_radius = er;
 		polar_radius = pr;
 		eccentricity = Math.sqrt(1 - pr * pr / er * er);
+		double e2 = Math.pow(eccentricity, 2);
+		double e4 = Math.pow(eccentricity, 4);
+		double e6 = Math.pow(eccentricity, 6);
+		term1 = calculateTerm1(e2, e4, e6);
+		term2 = calculateTerm2(e2, e4, e6);
+		term3 = calculateTerm3(e4, e6);
+		term4 = calculateTerm4(e6);
+	}
+
+	/** Term 1 for calculating the meridional arc */
+	protected final double term1;
+
+	/** Term 2 for calculating the meridional arc */
+	protected final double term2;
+
+	/** Term 3 for calculating the meridional arc */
+	protected final double term3;
+
+	/** Term 4 for calculating the meridional arc */
+	protected final double term4;
+
+	/** Calculate the first term for meridional arc */
+	protected double calculateTerm1(double e2, double e4, double e6) {
+		return 1 - e2 / 4 - 3 * e4 / 64 - 5 * e6 / 256;
+	}
+
+	/** Calculate the second term for meridonal arc */
+	protected double calculateTerm2(double e2, double e4, double e6) {
+		return 3 * e2 / 8 + 3 * e4 / 32 + 45 * e6 / 1024;
+	}
+
+	/** Calculate the third term for meridonal arc */
+	protected double calculateTerm3(double e4, double e6) {
+		return 15 * e4 / 256 + 45 * e6 / 1024;
+	}
+
+	/** Calculate the fourth term for meridonal arc */
+	protected double calculateTerm4(double e6) {
+		return 35 * e6 / 3072;
+	}
+
+	/** Calculate the meridional arc for the given latitude */
+	public double getMeridionalArc(double lat) {
+		return equatorial_radius * (
+		       + term1 * lat
+		       - term2 * Math.sin(2 * lat)
+		       + term3 * Math.sin(4 * lat)
+		       - term4 * Math.sin(6 * lat)
+		);
 	}
 
 	/** World Geodetic System of 1984 (used by GPS) */

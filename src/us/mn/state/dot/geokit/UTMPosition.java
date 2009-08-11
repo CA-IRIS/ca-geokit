@@ -65,7 +65,7 @@ public class UTMPosition {
 		double T4 = Math.pow(tan_lat, 4);
 		double C = ep2 * Math.pow(cos_lat, 2);
 		double A = p * cos_lat;
-		double M = meridional_arc(gd, lat);
+		double M = gd.getMeridionalArc(lat);
 		double easting = K0 * nu * (A
 			+ (1 - T2 + C)
 			* Math.pow(A, 3) / 6
@@ -83,25 +83,6 @@ public class UTMPosition {
 		if(pos.getLatitude() < 0)
 			northing += FALSE_NORTHING;
 		return new UTMPosition(zone, easting, northing);
-	}
-
-	/** Calculate the meridional arc for the given latitude */
-	static protected double meridional_arc(GeodeticDatum gd, double lat) {
-		double a = gd.getEquatorialRadius();
-		double e = gd.getEccentricity();
-		double e2 = Math.pow(e, 2);
-		double e4 = Math.pow(e, 4);
-		double e6 = Math.pow(e, 6);
-		return a * (
-		       + (1 - e2 / 4 - 3 * e4 / 64 - 5 * e6 / 256)
-		       * lat
-		       - (3 * e2 / 8 + 3 * e4 / 32 + 45 * e6 / 1024)
-		       * Math.sin(2 * lat)
-		       + (15 * e4 / 256 + 45 * e6 / 1024)
-		       * Math.sin(4 * lat)
-		       - (35 * e6 / 3072)
-		       * Math.sin(6 * lat)
-		);
 	}
 
 /*
