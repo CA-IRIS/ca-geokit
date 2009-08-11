@@ -50,7 +50,7 @@ public class GeodeticDatum {
 	protected GeodeticDatum(double er, double pr) {
 		equatorial_radius = er;
 		polar_radius = pr;
-		eccentricity = Math.sqrt(1 - pr * pr / er * er);
+		eccentricity = Math.sqrt(1 - Math.pow(pr, 2) / Math.pow(er, 2));
 		double e2 = Math.pow(eccentricity, 2);
 		double e4 = Math.pow(eccentricity, 4);
 		double e6 = Math.pow(eccentricity, 6);
