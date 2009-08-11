@@ -38,22 +38,21 @@ public class GeodeticDatum {
 		return polar_radius;
 	}
 
-	/** Elliptic eccentricity */
-	protected final double eccentricity;
+	/** Square of elliptic eccentricity */
+	protected final double e2;
 
-	/** Get the eccentricity */
-	public double getEccentricity() {
-		return eccentricity;
+	/** Get the square of elliptic eccentricity */
+	public double getEccentricitySquared() {
+		return e2;
 	}
 
 	/** Create a new geodetic datum */
 	protected GeodeticDatum(double er, double pr) {
 		equatorial_radius = er;
 		polar_radius = pr;
-		eccentricity = Math.sqrt(1 - Math.pow(pr, 2) / Math.pow(er, 2));
-		double e2 = Math.pow(eccentricity, 2);
-		double e4 = Math.pow(eccentricity, 4);
-		double e6 = Math.pow(eccentricity, 6);
+		e2 = 1 - Math.pow(pr, 2) / Math.pow(er, 2);
+		double e4 = Math.pow(e2, 2);
+		double e6 = Math.pow(e2, 4);
 		term1 = calculateTerm1(e2, e4, e6);
 		term2 = calculateTerm2(e2, e4, e6);
 		term3 = calculateTerm3(e4, e6);

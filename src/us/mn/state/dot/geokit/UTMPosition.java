@@ -49,8 +49,7 @@ public class UTMPosition {
 	/** Convert a (lat/lon) position to UTM */
 	public UTMPosition convert(GeodeticDatum gd, Position pos) {
 		double a = gd.getEquatorialRadius();
-		double e = gd.getEccentricity();
-		double e2 = Math.pow(e, 2);
+		double e2 = gd.getEccentricitySquared();
 		double ep2 = e2 / (1 - e2);
 		double lat = Math.toRadians(pos.getLatitude());
 		double lon = Math.toRadians(pos.getLongitude());
