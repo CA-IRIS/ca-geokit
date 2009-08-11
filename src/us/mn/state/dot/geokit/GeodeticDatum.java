@@ -53,8 +53,8 @@ public class GeodeticDatum {
 		e2 = 1 - Math.pow(pr, 2) / Math.pow(er, 2);
 		double e4 = Math.pow(e2, 2);
 		double e6 = Math.pow(e2, 4);
-		term1 = calculateTerm1(e2, e4, e6);
-		term2 = calculateTerm2(e2, e4, e6);
+		term1 = calculateTerm1(e4, e6);
+		term2 = calculateTerm2(e4, e6);
 		term3 = calculateTerm3(e4, e6);
 		term4 = calculateTerm4(e6);
 	}
@@ -72,12 +72,12 @@ public class GeodeticDatum {
 	protected final double term4;
 
 	/** Calculate the first term for meridional arc */
-	protected double calculateTerm1(double e2, double e4, double e6) {
+	protected double calculateTerm1(double e4, double e6) {
 		return 1 - e2 / 4 - 3 * e4 / 64 - 5 * e6 / 256;
 	}
 
 	/** Calculate the second term for meridonal arc */
-	protected double calculateTerm2(double e2, double e4, double e6) {
+	protected double calculateTerm2(double e4, double e6) {
 		return 3 * e2 / 8 + 3 * e4 / 32 + 45 * e6 / 1024;
 	}
 
