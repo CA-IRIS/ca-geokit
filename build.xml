@@ -69,17 +69,16 @@
 		       deprecation="on"
 		       source="1.5"
 		       target="1.5">
-			<compilerarg value="-Xlint:unchecked"/>
 		</javac>
 	</target>
 
 	<!-- Create the jar file -->
 	<target name="jar"
 		depends="compile"
-		description="--> generate the ${name} jar files">
+		description="--> generate the jar file">
 		<jar jarfile="${build.lib}/${name}-${version}.jar">
 			<fileset dir="${build.classes}">
-				<include name="us/mn/state/dot/sched/**"/>
+				<include name="us/mn/state/dot/geokit/**"/>
 			</fileset>
 		</jar>
 	</target>
