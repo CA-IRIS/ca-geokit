@@ -52,7 +52,7 @@ public class GeodeticDatum {
 		polar_radius = pr;
 		e2 = 1 - Math.pow(pr, 2) / Math.pow(er, 2);
 		double e4 = Math.pow(e2, 2);
-		double e6 = Math.pow(e2, 4);
+		double e6 = Math.pow(e2, 3);
 		term1 = calculateTerm1(e4, e6);
 		term2 = calculateTerm2(e4, e6);
 		term3 = calculateTerm3(e4, e6);
