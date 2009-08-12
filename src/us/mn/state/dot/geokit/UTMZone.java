@@ -24,7 +24,7 @@ public class UTMZone {
 
 	/** Get the zone number from longitude degrees */
 	static protected int lon_zone(double lon) {
-		return 1 + (int)Math.floor(lon + 180 / 6);
+		return 1 + (int)(Math.floor(lon + 180) / 6);
 	}
 
 	/** Zone number */
