@@ -120,14 +120,13 @@ public class UTMPosition {
 		double y = northing;
 		if(!zone.isNorthernHemisphere())
 			y -= FALSE_NORTHING;
-
 		double M = y / K0;
+		// FIXME: some of this could be done by the Geodetic Datum
 		double mu = M / (a * (1
 		       - e2 / 4
 		       - 3 * Math.pow(e2, 2) / 64
 		       - 5 * Math.pow(e2, 3) / 256)
 		);
-
 		double phi = (mu
 		       + (3 * e1 / 2 - 27 * Math.pow(e1, 3) / 32)
 		       * Math.sin(2 * mu)
@@ -136,7 +135,6 @@ public class UTMPosition {
 		       + (151 * Math.pow(e1, 3) / 96)
 		       * Math.sin(6 * mu)
 		);
-
 		double sin_phi2 = Math.pow(Math.sin(phi), 2);
 		double cos_phi = Math.cos(phi);
 		double tan_phi = Math.tan(phi);
@@ -147,7 +145,6 @@ public class UTMPosition {
 		double C2 = Math.pow(C1, 2);
 		double R1 = a * (1 - e2) / Math.pow((1 - e2 * sin_phi2), 1.5);
 		double D = x / (N1 * K0);
-
 		double lat = phi - (N1 * tan_phi / R1) * (
 		       + Math.pow(D, 2) / 2
 		       - (5 + 3 * T2 + 10 * C1 - 4 * C2 - 9 * ep2)
@@ -155,13 +152,12 @@ public class UTMPosition {
 		       + (61+ 90 * T2 + 298 * C1 + 45 * T4 - 252 * ep2 - 3 * C2)
 		       * Math.pow(D, 6) / 720
 		);
-		double lat_deg = Math.toDegrees(lat);
-
 		double lon = (D
 		       - (1 + 2 * T2 + C1)
 		       * Math.pow(D, 3) / 6
 		       + (5 - 2 * C1 + 28 * T2 - 3 * C2 + 8 * ep2 + 24 * T4)
 		       * Math.pow(D, 5) / 120) / cos_phi;
+		double lat_deg = Math.toDegrees(lat);
 		double lon_deg = Math.toDegrees(lon);
 		lon_deg += zone.meridian();
 		return new Position(lat_deg, lon_deg);
