@@ -43,7 +43,7 @@ public class UTMPosition {
 		UTMZone zone = new UTMZone(pos);
 		// nu is the distance to the polar axis
 		double nu = a / Math.sqrt(1 - e2 * Math.pow(sin_lat, 2));
-		double p = lon - zone.meridian();
+		double p = lon - Math.toRadians(zone.meridian());
 		double T2 = Math.pow(tan_lat, 2);
 		double T4 = Math.pow(tan_lat, 4);
 		double C = ep2 * Math.pow(cos_lat, 2);
@@ -71,17 +71,43 @@ public class UTMPosition {
 	/** UTM zone */
 	protected final UTMZone zone;
 
+	/** Get the UTM zone */
+	public UTMZone getZone() {
+		return zone;
+	}
+
 	/** Easting (meters) */
 	protected final double easting;
 
+	/** Get the easting (meters) */
+	public double getEasting() {
+		return easting;
+	}
+
 	/** Northing (meters) */
 	protected final double northing;
+
+	/** Get the northing (meters) */
+	public double getNorthing() {
+		return northing;
+	}
 
 	/** Create a new UTM position */
 	public UTMPosition(UTMZone z, double e, double n) {
 		zone = z;
 		easting = e;
 		northing = n;
+	}
+
+	/** Get a string representation of the UTM position */
+	public String toString() {
+		StringBuilder b = new StringBuilder();
+		b.append(zone.toString());
+		b.append(',');
+		b.append(easting);
+		b.append(',');
+		b.append(northing);
+		return b.toString();
 	}
 
 	/** Get the (lat/lon) position */
