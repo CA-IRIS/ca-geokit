@@ -35,11 +35,7 @@
 
 	<!-- Compiler configuration -->
 	<property name="build.compiler.pedantic" value="true"/>
-	<path id="classpath">
-		<fileset dir="${lib.dir}" includes="*.jar"/>
-	</path>
 	<path id="junit.classpath">
-		<path refid="classpath"/>
 		<pathelement location="${build.dir}/classes"/>
 		<pathelement location="${build.dir}/test"/>
 	</path>
