@@ -1,6 +1,6 @@
 /*
  * IRIS -- Intelligent Roadway Information System
- * Copyright (C) 2010  Minnesota Department of Transportation
+ * Copyright (C) 2010-2011  Minnesota Department of Transportation
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,12 +50,11 @@ public class SphericalMercatorTest extends TestCase {
 	}
 
 	protected SphericalMercatorPosition testPosition(double lat,double lon){
-		GeodeticDatum gd = GeodeticDatum.WGS_84;
 		SphericalMercatorPosition smp =
-			SphericalMercatorPosition.convert(gd, new Position(lat,
+			SphericalMercatorPosition.convert(new Position(lat,
 			lon));
 		System.err.println(smp);
-		Position p = smp.getPosition(gd);
+		Position p = smp.getPosition();
 		assertTrue(near(p.getLatitude(), lat));
 		assertTrue(near(p.getLongitude(), lon));
 		return smp;

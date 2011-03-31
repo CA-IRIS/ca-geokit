@@ -1,6 +1,6 @@
 /*
  * IRIS -- Intelligent Roadway Information System
- * Copyright (C) 2010  Minnesota Department of Transportation
+ * Copyright (C) 2010-2011  Minnesota Department of Transportation
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,11 +30,9 @@ public class SphericalMercatorPosition {
 	}
 
 	/** Convert a (lat/lon) position to spherical mercator */
-	static public SphericalMercatorPosition convert(GeodeticDatum gd,
-		Position pos)
-	{
+	static public SphericalMercatorPosition convert(Position pos) {
 		double lat = clipLatitude(pos.getLatitude());
-		double radius = gd.getEquatorialRadius();
+		double radius = GeodeticDatum.SPHERICAL.getEquatorialRadius();
 		double mx = Math.toRadians(pos.getLongitude()) * radius;
 		double rlat = Math.toRadians(lat + 90) / 2;
 		double my = Math.log(Math.tan(rlat)) * radius;
@@ -73,8 +71,8 @@ public class SphericalMercatorPosition {
 	}
 
 	/** Get the (lat/lon) position */
-	public Position getPosition(GeodeticDatum gd) {
-		double radius = gd.getEquatorialRadius();
+	public Position getPosition() {
+		double radius = GeodeticDatum.SPHERICAL.getEquatorialRadius();
 		double rlat = Math.atan(Math.exp(y / radius));
 		double lat = Math.toDegrees(2 * rlat) - 90;
 		double lon = Math.toDegrees(x / radius);

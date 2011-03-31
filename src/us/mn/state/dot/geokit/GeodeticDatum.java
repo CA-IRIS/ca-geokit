@@ -1,6 +1,6 @@
 /*
  * IRIS -- Intelligent Roadway Information System
- * Copyright (C) 2009  Minnesota Department of Transportation
+ * Copyright (C) 2009-2011  Minnesota Department of Transportation
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -128,4 +128,8 @@ public class GeodeticDatum {
 		new GeodeticDatum(6377397.2, 6356079);
 	static public final GeodeticDatum Everest_1830 =
 		new GeodeticDatum(6377276.3, 6356075.4);
+
+	/** Spherical Mercator Datum */
+	static public final GeodeticDatum SPHERICAL =
+		new GeodeticDatum(6378137, 6378137);
 }
