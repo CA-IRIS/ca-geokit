@@ -50,12 +50,10 @@ public enum ZoomLevel {
 
 	/** Lookup a zoom level for the given scale */
 	static public ZoomLevel lookup(double sc) {
-		ZoomLevel prev = ZERO;
 		for(ZoomLevel zl: values()) {
 			if(zl.scale < sc)
-				return prev;
-			prev = zl;
+				return zl;
 		}
-		return prev;
+		return values()[values().length - 1];
 	}
 }
