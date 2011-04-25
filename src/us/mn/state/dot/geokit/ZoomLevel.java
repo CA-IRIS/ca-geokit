@@ -24,7 +24,7 @@ package us.mn.state.dot.geokit;
 public enum ZoomLevel {
 	ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN,
 	ELEVEN, TWELVE, THIRTEEN, FOURTEEN, FIFTEEN, SIXTEEN, SEVENTEEN,
-	EIGHTEEN, NINETEEN, TWENTY, TWENTY_ONE, TWENTY_TWO;
+	EIGHTEEN;
 
 	/** Number of pixels at the zoom level.  NOTE: for zoom levels
 	 * beyond 22, this would need to be declared long. */
