@@ -34,9 +34,14 @@ public enum ZoomLevel {
 	public final double scale = circumference() / n_pixels;
 
 	/** Get the circumference of the Earth in meters */
-	private double circumference() {
+	static private double circumference() {
 		return 2 * Math.PI *
 			GeodeticDatum.SPHERICAL.getEquatorialRadius();
+	}
+
+	/** Get the coordinate origin in meters */
+	static private double origin() {
+		return Math.PI * GeodeticDatum.SPHERICAL.getEquatorialRadius();
 	}
 
 	/** Get a zoom level from an ordinal value */
@@ -55,5 +60,23 @@ public enum ZoomLevel {
 				return zl;
 		}
 		return values()[values().length - 1];
+	}
+
+	/** Get the pixel X coordinate */
+	public double getPixelX(double mx) {
+		return (mx + origin()) / scale;
+	}
+
+	/** Get the pixel Y coordinate */
+	public double getPixelY(double my) {
+		return (my + origin()) / scale;
+	}
+
+	/** Get the tile for a spherical mercator coordinate pair */
+	public String getTile(double px, double py) {
+		int tx = (int)Math.floor(px / 256);
+		int ty = (int)Math.floor(py / 256);
+		int gy = (1 << ordinal()) - 1 - ty;
+		return "" + ordinal() + '/' + tx + '/' + gy;
 	}
 }
