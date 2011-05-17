@@ -103,13 +103,13 @@ public class GeodeticDatum {
 
 	/** World Geodetic System of 1984 (used by GPS) */
 	static public final GeodeticDatum WGS_84 =
-		new GeodeticDatum(6378137, 6356752.3142);
+		new GeodeticDatum(6378137, 6356752.314245);
 
 	/** North Americaon Datum of 1983 */
 	static public final GeodeticDatum NAD_83 = WGS_84;
 
 	static public final GeodeticDatum GRS_80 =
-		new GeodeticDatum(6378137, 6356752.3141);
+		new GeodeticDatum(6378137, 6356752.314140);
 	static public final GeodeticDatum WGS_72 =
 		new GeodeticDatum(6378135, 6356750.5);
 	static public final GeodeticDatum Australian_1965 =
