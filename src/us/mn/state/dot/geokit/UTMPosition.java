@@ -1,6 +1,6 @@
 /*
  * IRIS -- Intelligent Roadway Information System
- * Copyright (C) 2009  Minnesota Department of Transportation
+ * Copyright (C) 2009-2012  Minnesota Department of Transportation
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -161,5 +161,10 @@ public class UTMPosition {
 		double lon_deg = Math.toDegrees(lon);
 		lon_deg += zone.meridian();
 		return new Position(lat_deg, lon_deg);
+	}
+
+	/** Calculate the distance between two locations (in meters) */
+	public double distancePythagoran(UTMPosition op) {
+		return Math.hypot(op.easting - easting, op.northing - northing);
 	}
 }
