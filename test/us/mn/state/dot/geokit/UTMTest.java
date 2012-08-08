@@ -1,6 +1,6 @@
 /*
  * IRIS -- Intelligent Roadway Information System
- * Copyright (C) 2009-2010  Minnesota Department of Transportation
+ * Copyright (C) 2009-2012  Minnesota Department of Transportation
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,19 +37,19 @@ public class UTMTest extends TestCase {
 		UTMPosition utm = testPosition(45, -93); // Minnesota
 		assertTrue(utm.getZone().equals(new UTMZone(15, true)));
 		assertTrue(near(utm.getEasting(), 500000));
-		assertTrue(near(utm.getNorthing(), 4982950.400429002));
+		assertTrue(near(utm.getNorthing(), 4982950.400480389));
 		utm = testPosition(45, -94);	// Minnesota
 		assertTrue(utm.getZone().equals(new UTMZone(15, true)));
-		assertTrue(near(utm.getEasting(), 421184.69708298746));
-		assertTrue(near(utm.getNorthing(), 4983436.7685517482));
+		assertTrue(near(utm.getEasting(), 421184.6970832655));
+		assertTrue(near(utm.getNorthing(), 4983436.768603133));
 		utm = testPosition(39, -122);	// California
 		assertTrue(utm.getZone().equals(new UTMZone(10, true)));
-		assertTrue(near(utm.getEasting(), 586592.67802760156));
-		assertTrue(near(utm.getNorthing(), 4317252.164704174));
+		assertTrue(near(utm.getEasting(), 586592.6780273598));
+		assertTrue(near(utm.getNorthing(), 4317252.16475244));
 		utm = testPosition(-45, 173);	// New Zealand
 		assertTrue(utm.getZone().equals(new UTMZone(59, false)));
-		assertTrue(near(utm.getEasting(), 657630.6407325173));
-		assertTrue(near(utm.getNorthing(), 5015103.828525752));
+		assertTrue(near(utm.getEasting(), 657630.6407319611));
+		assertTrue(near(utm.getNorthing(), 5015103.828474372));
 	}
 
 	protected UTMPosition testPosition(double lat, double lon) {
