@@ -1,6 +1,6 @@
 /*
  * IRIS -- Intelligent Roadway Information System
- * Copyright (C) 2011  Minnesota Department of Transportation
+ * Copyright (C) 2011-2013  Minnesota Department of Transportation
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,9 @@ public enum ZoomLevel {
 	ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN,
 	ELEVEN, TWELVE, THIRTEEN, FOURTEEN, FIFTEEN, SIXTEEN, SEVENTEEN,
 	EIGHTEEN;
+
+	/** Number of tiles in either X or Y dimension. */
+	public final int n_tiles = 1 << ordinal();
 
 	/** Number of pixels at the zoom level.  NOTE: for zoom levels
 	 * beyond 22, this would need to be declared long. */
@@ -70,13 +73,5 @@ public enum ZoomLevel {
 	/** Get the pixel Y coordinate */
 	public double getPixelY(double my) {
 		return (my + origin()) / scale;
-	}
-
-	/** Get the tile for a spherical mercator coordinate pair */
-	public String getTile(double px, double py) {
-		int tx = (int)Math.floor(px / 256);
-		int ty = (int)Math.floor(py / 256);
-		int gy = (1 << ordinal()) - 1 - ty;
-		return "" + ordinal() + '/' + tx + '/' + gy;
 	}
 }
