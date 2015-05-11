@@ -1,6 +1,7 @@
 /*
  * IRIS -- Intelligent Roadway Information System
  * Copyright (C) 2011-2013  Minnesota Department of Transportation
+ * Copyright (C) 2014-2015  AHMCT, University of California
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +21,11 @@ package us.mn.state.dot.geokit;
  * successive zoom level, the number of pixels doubles for each dimension.
  *
  * @author Douglas Lau
+ * @author Travis Swanston
  */
 public enum ZoomLevel {
 	ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN,
-	ELEVEN, TWELVE, THIRTEEN, FOURTEEN, FIFTEEN, SIXTEEN, SEVENTEEN,
-	EIGHTEEN;
+	ELEVEN, TWELVE, THIRTEEN, FOURTEEN, FIFTEEN, SIXTEEN, SEVENTEEN;
 
 	/** Number of tiles in either X or Y dimension. */
 	public final int n_tiles = 1 << ordinal();
